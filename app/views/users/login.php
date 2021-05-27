@@ -23,7 +23,7 @@ require APP_ROOT . '/views/inc/head.php';
 
             <button type="submit" id="submit" value="submit">Sign In</button>
 
-            <p class="options">Not registered yet? <a href="<?= URL_ROOT ?>/users/register">Create an account</a></p>
+            <p class="options">Not registered yet? <a href="<?= URL_ROOT ?>/users/register">Create an profile</a></p>
         </form>
     </div>
 </div>

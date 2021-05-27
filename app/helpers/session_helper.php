@@ -5,7 +5,7 @@
 	 * Check si l'utilisateur est connecté via le cookie dee seession
 	 */
 	function isLoggedIn() {
-		if (isset($_SESSION['user_id'])) {
+		if (isset($_SESSION['profile_id'])) {
 			return true;
 		} else {
 			return false;

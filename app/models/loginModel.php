@@ -6,34 +6,45 @@ class loginModel
     {
         $this->db = new Database();
     }
-    /* === Exemple Code ===
-    
-    public function updateExemple($user_id, $username)
+
+    public function login($email, $password)
     {
-        $this->db->query('UPDATE users SET username = :username WHERE user_id = :user_id');
-        $this->db->bind(':user_id', $user_id);
-        $this->db->bind(':username', $username);
-    
+        $this->db->query('SELECT * FROM profile WHERE email = :email');
+        $this->db->bind(':email', $email);
+        $row = $this->db->fetch();
+        $hashedPassword = $row->password;
+
+        if(password_verify($password, $hashedPassword)){
+            return $row;
+        } else {
+            return false;
+        }
+    }
+
+    public function register($data)
+    {
+        $this->db->query('INSERT INTO profile (firstname, lastname, email, password) VALUES (:firstname, :lastname, :email, :password)');
+        $this->db->bind(':firstname', $data['firstname']);
+        $this->db->bind(':lastname', $data['lastname']);
+        $this->db->bind(':email', $data['email']);
+        $this->db->bind(':password', $data['password']);
+
         if($this->db->execute()){
             return true;
         } else {
             return false;
         }
     }
-    
-    public function fetchExemple($user_id)
+
+    public function findUserByEmail($email)
     {
-        $this->db->query('SELECT * FROM users WHERE user_id = :user_id');
-        $this->db->bind(':user_id', $user_id);
-        return $this->db->fetch();
+        $this->db->query('SELECT * FROM profile WHERE email = :email');
+        $this->db->bind(':email', $email);
+
+        if($this->db->rowCount() > 0){
+            return true;
+        } else {
+            return false;
+        }
     }
-    
-    public function fetchAllExemple($search)
-    {
-        $this->db->query('SELECT * FROM posts WHERE post_name LIKE :search');
-        $this->db->bind(':search', '%'.$search.'%');
-        return $this->db->fetchAll();
-    }
-    
-    */
 }

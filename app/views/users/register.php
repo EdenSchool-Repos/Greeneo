@@ -39,7 +39,7 @@ require APP_ROOT . '/views/inc/head.php';
 
             <button id="submit" type="submit" value="submit">Submit</button>
 
-            <p class="options">Not registered yet? <a href="<?php echo URL_ROOT; ?>/users/register">Create an account!</a></p>
+            <p class="options">Not registered yet? <a href="<?php echo URL_ROOT; ?>/users/register">Create an profile!</a></p>
         </form>
     </div>
 </div>
