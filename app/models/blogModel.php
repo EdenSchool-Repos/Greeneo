@@ -21,13 +21,6 @@ class blogModel
         }
     }
     
-    public function fetchExemple($user_id)
-    {
-        $this->db->query('SELECT * FROM users WHERE user_id = :user_id');
-        $this->db->bind(':user_id', $user_id);
-        return $this->db->fetch();
-    }
-    
     public function fetchAllExemple($search)
     {
         $this->db->query('SELECT * FROM posts WHERE post_name LIKE :search');
@@ -36,4 +29,17 @@ class blogModel
     }
     
     */
+
+    public function findArticle($id)
+    {
+        $this->db->query('SELECT * FROM posts WHERE post_id = :post_id');
+        $this->db->bind(':post_id', $id);
+        return $this->db->fetch();
+    }
+
+    public function findAllArticle()
+    {
+        $this->db->query('SELECT * FROM posts ORDER BY post_id DESC');
+        return $this->db->fetchAll();
+    }
 }

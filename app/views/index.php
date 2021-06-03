@@ -13,7 +13,7 @@
     </header>
 
     <main>
-        <!-- Generate you files on https://mvc-generator.herokuapp.com/ -->
+
     </main>
     <?php
         require APP_ROOT . '/views/inc/footer.php';
