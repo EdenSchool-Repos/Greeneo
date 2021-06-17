@@ -10,7 +10,7 @@
         <h1><?= $data['title'] ?></h1>
         <h1 class="profileFirstName"><?= $data['profileFirstName'] ?></h1>
         <h1 class="profileLastName"><?= $data['profileLastName'] ?></h1>
-        <h1 class="profileEmail"><?= $data['profileEmail'] ?></hh1>
+        <h1 class="profileEmail"><?= $data['profileEmail'] ?></h1>
         <h1><?= $data['profileRole'] ?></h1>
 
         <?php if($data['profileID'] === $_SESSION['profile_id']): ?>
