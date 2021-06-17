@@ -42,4 +42,20 @@ class blogModel
         $this->db->query('SELECT * FROM posts ORDER BY post_id DESC');
         return $this->db->fetchAll();
     }
+
+    public function editBlog($id, $title, $slug, $image, $body)
+    {
+        $this->db->query('UPDATE posts SET title = :title, slug = :slug, image = :image, body = :body WHERE post_id = :id');
+        $this->db->bind(':id', $id);
+        $this->db->bind(':title', $title);
+        $this->db->bind(':slug', $slug);
+        $this->db->bind(':image', $image);
+        $this->db->bind(':body', $body);
+
+        if($this->db->execute()){
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

@@ -10,6 +10,7 @@
 		    // Import SQL commands
 			if(!empty(DB_HOST)){
 			    $this->adminModel = $this->loadModel('adminModel');
+                $this->blogModel = $this->loadModel('blogModel');
 			}
 
 			if(!isLoggedIn()) $this->renderError(401);
@@ -17,15 +18,65 @@
 		}
 		
 		/**
-		 * views/admin/index.php
+		 * views/admin/blog.php
 		 */
 		public function index() {
-			$data = [
-                'headTitle' => 'admin',
-				'title' => 'admin has been generated',
-                'cssFile' => 'admin'
-			];
-			
-			$this->render('admin/index', $data);
+			header('Location: '.URL_ROOT.'/admin/blog');
 		}
+
+		public function blog($action = null, $id = null) {
+		    if($action === null):
+
+                $allArticles = $this->blogModel->findAllArticle();
+
+                $data = [
+                    'headTitle' => 'Administration du Blog',
+                    'title' => 'Blog Admin has been generated',
+                    'cssFile' => 'admin',
+                    'articles' => $allArticles
+                ];
+
+                $this->render('admin/blog', $data);
+
+            elseif($action === "edit"):
+
+                if($_SERVER['REQUEST_METHOD'] == 'POST') {
+                    $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+                    if($this->blogModel->editBlog($id, $_POST['title'], $_POST['slug'], $_POST['image'], $_POST['body'])){
+                        header('Location: '.URL_ROOT.'/admin/blog');
+                    }
+                }
+
+                if($id === null){
+                    $this->renderError(400);
+                }
+
+                $article = $this->blogModel->findArticle($id);
+
+                if(is_bool($article) != 1):
+                    if($article->profile_id === $_SESSION['profile_id']){
+                        $data = [
+                            'headTitle' => 'Modification de '.$article->title,
+                            'title' => $article->title,
+                            'cssFile' => 'view.blog',
+                            'article_content' => $article
+                        ];
+
+                        $this->render('admin/blog/edit', $data);
+                    } else {
+                        $this->renderError(401);
+                    }
+                else:
+                    $this->renderError(404);
+                endif;
+
+            elseif($action === "create"):
+
+
+
+            else:
+                $this->renderError(404);
+            endif;
+        }
 	}
