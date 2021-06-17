@@ -58,4 +58,21 @@ class blogModel
             return false;
         }
     }
+
+    public function createBlog($profile_id, $title, $slug, $image, $body)
+    {
+        $this->db->query('INSERT INTO posts (profile_id, title, slug, image, body, published) VALUES (:profile_id, :title, :slug, :image, :body, :published)');
+        $this->db->bind(':profile_id', $profile_id);
+        $this->db->bind(':title', $title);
+        $this->db->bind(':slug', $slug);
+        $this->db->bind(':image', $image);
+        $this->db->bind(':body', $body);
+        $this->db->bind(':published', 1);
+
+        if($this->db->execute()){
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

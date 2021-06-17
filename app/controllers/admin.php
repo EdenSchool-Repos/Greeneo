@@ -59,7 +59,7 @@
                         $data = [
                             'headTitle' => 'Modification de '.$article->title,
                             'title' => $article->title,
-                            'cssFile' => 'view.blog',
+                            'cssFile' => 'admin',
                             'article_content' => $article
                         ];
 
@@ -73,7 +73,21 @@
 
             elseif($action === "create"):
 
+                if($_SERVER['REQUEST_METHOD'] == 'POST') {
+                    $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
+                    if($this->blogModel->createBlog($_SESSION['profile_id'], $_POST['title'], $_POST['slug'], $_POST['image'], $_POST['body'])){
+                        header('Location: '.URL_ROOT.'/admin/blog');
+                    }
+                } else {
+                    $data = [
+                        'headTitle' => 'Creation d\'un Article',
+                        'title' => 'Creer mon Article',
+                        'cssFile' => 'admin'
+                    ];
+
+                    $this->render('admin/blog/create', $data);
+                }
 
             else:
                 $this->renderError(404);
