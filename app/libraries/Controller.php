@@ -30,4 +30,19 @@
 				die("Cette vue n'existe pas !!");
 			}
 		}
+
+        /**
+         * Chargement dynamique des pages erreurs
+         * @param number $codeError
+         * @param string $titleError
+         */
+        public function renderError($codeError = 520, $titleError = "oups !")
+        {
+            $data = [
+                'headTitle' => $titleError,
+                'cssFile' => 'errorPage',
+                "errorCode" => $codeError
+            ];
+            die($this->render('errors', $data));
+        }
 	}

@@ -11,6 +11,9 @@
 			if(!empty(DB_HOST)){
 			    $this->adminModel = $this->loadModel('adminModel');
 			}
+
+			if(!isLoggedIn()) $this->renderError(401);
+            if(!isAdmin()) $this->renderError(403);
 		}
 		
 		/**
