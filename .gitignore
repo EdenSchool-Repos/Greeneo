@@ -156,7 +156,3 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
-
-# htaccess
-.htaccess
-public/.htaccess
