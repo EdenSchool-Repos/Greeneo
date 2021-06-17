@@ -14,7 +14,7 @@
 		}
 		
 		/**
-		 * views/blog/index.php
+		 * views/blog/blog.php
 		 */
 		public function index($id = null) {
 
@@ -35,14 +35,18 @@
 
                 $article = $this->blogModel->findArticle($id);
 
-                $data = [
-                    'headTitle' => $article->title,
-                    'title' => $article->title,
-                    'cssFile' => 'view.blog',
-                    'article_content' => $article
-                ];
+			    if(is_bool($article) != 1):
+                    $data = [
+                        'headTitle' => $article->title,
+                        'title' => $article->title,
+                        'cssFile' => 'view.blog',
+                        'article_content' => $article
+                    ];
 
-                $this->render('blog/view', $data);
+                    $this->render('blog/view', $data);
+			    else:
+                    $this->renderError(404);
+                endif;
 
             endif;
 		}
