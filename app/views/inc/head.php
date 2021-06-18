@@ -30,6 +30,10 @@
     <link rel="stylesheet" href="<?= URL_ROOT ?>/public/css/global.style.css">
     <link rel="stylesheet" href="<?= URL_ROOT ?>/public/css/<?= $data['cssFile'] ?>.style.css">
 
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">   
+
     <!-- Load FontAwsome and Jquery -->
     <?php echo file_get_contents('https://headswift.com/cdn/0.1.0/?frameworks=headswift-stats,font-awesome,jquery&version=0.1.0,5.15.3,3.6.0'); ?>
 </head>

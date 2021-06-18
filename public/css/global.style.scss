@@ -1,0 +1,220 @@
+// ----------------------------------------------------------------
+// ? Colors
+// ----------------------------------------------------------------
+
+$black-100 : #252525;
+$black-75 : #2F2F2F;
+$black-50 : #353535;
+$white-100 : #FCFCFC;
+$white-50 : #F9F9F9;
+$green : #01AF5C;
+$orange-100 : #FB9119;
+$orange-75 : #F1BA3B;
+$orange-50 : #F9DA93;
+
+// ----------------------------------------------------------------
+// ? Fonts
+// ----------------------------------------------------------------
+
+$poppins : 'Poppins', sans-serif;
+$light : 300;
+$regular : 400;
+$medium : 500;
+$semi-blod : 600;
+$bold : 700;
+$extra-bold : 800;
+$black : 900;
+
+// ----------------------------------------------------------------
+// ? Styles
+// ----------------------------------------------------------------
+
+html, body {
+	margin: 0;
+	font-family: $poppins;
+    font-size: 62.5%;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    transition: .2s ease-in-out color;
+
+    &:visited {
+        color: unset;
+    }
+
+    &:hover, &:focus {
+        color: $orange-50 !important;
+    }
+}
+
+.page-wrapper {
+    background-color: $black-100;
+}
+
+.nav-global {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 72px;
+    padding: 0 3.6rem 0 2.4rem;
+    background-color: $black-100;
+
+    .logo {
+        display: flex;
+        align-items: center;
+
+        img {
+            width: 3.2rem;
+            height: 3.2rem;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            line-height: 1;
+            margin-left: 8px;
+            color: $white-100;
+        }
+    }
+
+    .menu-burger {
+        background-color: transparent;
+        outline: none;
+        border: 1px solid $white-100;
+        padding: .8rem 1.2rem;
+        border-radius: .4rem;
+        
+        i {
+            color: $white-100;
+            font-size: 2rem;
+        }
+    }
+
+    .nav-div-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+
+        > .left-div {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            > ul {
+                margin-left: 2.1rem;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+
+                > div {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                }
+
+                li {
+                    list-style: none;
+                    &:not(:last-child) {
+                        margin-right: 2.4rem;
+                    }
+                    > a {
+                        color: $white-100;
+                        font-weight: $medium;
+                        font-size: 1.8rem;
+                    }
+                }
+            }
+        }
+        > .right-div {
+            > ul {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+    
+                > li {
+                    list-style: none;
+    
+                    &:not(:last-child) {
+                        margin-right: 1rem;
+                    }
+                    
+                    > a {
+                        color: $white-100;
+                        font-weight: $medium;
+                        font-size: 1.8rem;
+                        padding: .8rem 1.6rem; 
+                        border: 1px solid $white-100;
+                        border-radius: .4rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 1001px) {
+    .nav-global {
+        .menu-burger {
+            display: none;
+        }
+    }
+}
+
+@media (max-width: 1000px) {
+    .nav-global {
+        position: relative;
+        justify-content: space-between;
+        .menu-burger {
+            display: block;
+        }
+
+        .nav-div-container {
+            display: block;
+            transition: left 0.5s ease-in-out;
+            flex-direction: column;
+            position: absolute;
+            z-index: 99;
+            top: 72px;
+            left: -100vw;
+            width: 100%;
+            background-color: $black-100;
+            padding: 1rem 0 2rem;
+
+            .left-div {
+                ul {
+                    flex-direction: column;
+                    align-items: flex-start;
+                    li {
+                        margin: 0 0 1rem;
+                    }
+                }
+            }
+
+            .right-div {
+                ul {
+                    margin-left: 2.1rem;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    li {
+                        &:not(:first-child){
+                            margin-top: 1rem;
+                        }
+
+                        a {
+                            padding: 0;
+                            border: none;
+                            padding: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
